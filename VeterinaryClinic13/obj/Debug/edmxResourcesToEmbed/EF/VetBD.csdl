@@ -1,0 +1,491 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VeterinaryClinicModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cabinet">
+    <Key>
+      <PropertyRef Name="IdCabinet" />
+    </Key>
+    <Property Name="IdCabinet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CabinetName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK__Employee__Cabine__4D94879B" FromRole="Cabinet" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="IdClient" />
+    </Key>
+    <Property Name="IdClient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Passport" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Pets" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Gender1" Relationship="Self.FK__Client__Gender__48CFD27E" FromRole="Client" ToRole="Gender" />
+    <NavigationProperty Name="MedCard" Relationship="Self.FK__MedCard__IdClien__5DCAEF64" FromRole="Client" ToRole="MedCard" />
+  </EntityType>
+  <EntityType Name="Doctor">
+    <Key>
+      <PropertyRef Name="IdDoctor" />
+    </Key>
+    <Property Name="IdDoctor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Employee" Type="Int32" Nullable="false" />
+    <Property Name="Speciality" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employee1" Relationship="Self.FK__Doctor__Employee__5070F446" FromRole="Doctor" ToRole="Employee" />
+    <NavigationProperty Name="Speciality1" Relationship="Self.FK__Doctor__Speciali__5165187F" FromRole="Doctor" ToRole="Speciality" />
+    <NavigationProperty Name="Order" Relationship="Self.FK__Order__IdDoctor__60A75C0F" FromRole="Doctor" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="IdEmployee" />
+    </Key>
+    <Property Name="IdEmployee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="DirthDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Role" Type="Int32" Nullable="false" />
+    <Property Name="Cabinet" Type="Int32" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Login" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Cabinet1" Relationship="Self.FK__Employee__Cabine__4D94879B" FromRole="Employee" ToRole="Cabinet" />
+    <NavigationProperty Name="Doctor" Relationship="Self.FK__Doctor__Employee__5070F446" FromRole="Employee" ToRole="Doctor" />
+    <NavigationProperty Name="Gender1" Relationship="Self.FK__Employee__Gender__4BAC3F29" FromRole="Employee" ToRole="Gender" />
+    <NavigationProperty Name="Role1" Relationship="Self.FK__Employee__Role__4CA06362" FromRole="Employee" ToRole="Role" />
+    <NavigationProperty Name="PassEmpl" Relationship="Self.FK__PassEmpl__Employ__5629CD9C" FromRole="Employee" ToRole="PassEmpl" />
+  </EntityType>
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="IdGender" />
+    </Key>
+    <Property Name="IdGender" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="GenderName" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Client" Relationship="Self.FK__Client__Gender__48CFD27E" FromRole="Gender" ToRole="Client" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK__Employee__Gender__4BAC3F29" FromRole="Gender" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="GenderPets">
+    <Key>
+      <PropertyRef Name="IdGender" />
+    </Key>
+    <Property Name="IdGender" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="GenderName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Pets" Relationship="Self.FK__Pets__Gender__44FF419A" FromRole="GenderPets" ToRole="Pets" />
+  </EntityType>
+  <EntityType Name="MedCard">
+    <Key>
+      <PropertyRef Name="IdClient" />
+    </Key>
+    <Property Name="IdClient" Type="Int32" Nullable="false" />
+    <Property Name="IdPets" Type="Int32" Nullable="false" />
+    <Property Name="Diagnosis" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Symptoms" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Comment" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="PrescribedTreatment" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Tests" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MedicalSupplier" Type="Int32" />
+    <NavigationProperty Name="Client" Relationship="Self.FK__MedCard__IdClien__5DCAEF64" FromRole="MedCard" ToRole="Client" />
+  </EntityType>
+  <EntityType Name="MedicalSupplies">
+    <Key>
+      <PropertyRef Name="IdMedSupplies" />
+    </Key>
+    <Property Name="IdMedSupplies" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MedSupplierName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UnitMeas" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Quantity" Type="Int16" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <NavigationProperty Name="UnitOfMeasurement" Relationship="Self.FK__MedicalSu__UnitM__5AEE82B9" FromRole="MedicalSupplies" ToRole="UnitOfMeasurement" />
+    <NavigationProperty Name="OrderItem" Relationship="Self.FK__OrderItem__Medic__656C112C" FromRole="MedicalSupplies" ToRole="OrderItem" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="IdOrder" />
+    </Key>
+    <Property Name="IdOrder" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdDoctor" Type="Int32" Nullable="false" />
+    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Client" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Doctor" Relationship="Self.FK__Order__IdDoctor__60A75C0F" FromRole="Order" ToRole="Doctor" />
+    <NavigationProperty Name="OrderItem" Relationship="Self.FK__OrderItem__IdOrd__6383C8BA" FromRole="Order" ToRole="OrderItem" />
+  </EntityType>
+  <EntityType Name="OrderItem">
+    <Key>
+      <PropertyRef Name="IdOrder" />
+    </Key>
+    <Property Name="IdOrder" Type="Int32" Nullable="false" />
+    <Property Name="Service" Type="Int32" Nullable="false" />
+    <Property Name="MedicalSupplies" Type="Int32" />
+    <Property Name="Quantity" Type="Int16" Nullable="false" />
+    <Property Name="TotalPrice" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <NavigationProperty Name="MedicalSupplies1" Relationship="Self.FK__OrderItem__Medic__656C112C" FromRole="OrderItem" ToRole="MedicalSupplies" />
+    <NavigationProperty Name="Order" Relationship="Self.FK__OrderItem__IdOrd__6383C8BA" FromRole="OrderItem" ToRole="Order" />
+    <NavigationProperty Name="Service1" Relationship="Self.FK__OrderItem__Servi__6477ECF3" FromRole="OrderItem" ToRole="Service" />
+  </EntityType>
+  <EntityType Name="Passport">
+    <Key>
+      <PropertyRef Name="NumPass" />
+    </Key>
+    <Property Name="NumPass" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="SerPass" Type="String" MaxLength="6" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="DepartmentCode" Type="String" MaxLength="7" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="DateIssue" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="PassEmpl" Relationship="Self.FK__PassEmpl__NumPas__5535A963" FromRole="Passport" ToRole="PassEmpl" />
+  </EntityType>
+  <EntityType Name="Pets">
+    <Key>
+      <PropertyRef Name="IdPets" />
+    </Key>
+    <Property Name="IdPets" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Type" Type="Int32" Nullable="false" />
+    <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Breed" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="Age" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="GenderPets" Relationship="Self.FK__Pets__Gender__44FF419A" FromRole="Pets" ToRole="GenderPets" />
+    <NavigationProperty Name="Type1" Relationship="Self.FK__Pets__Type__440B1D61" FromRole="Pets" ToRole="Type" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="IdRole" />
+    </Key>
+    <Property Name="IdRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK__Employee__Role__4CA06362" FromRole="Role" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Service">
+    <Key>
+      <PropertyRef Name="IdService" />
+    </Key>
+    <Property Name="IdService" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServiceName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="DurationInMinut" Type="Int16" />
+    <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <NavigationProperty Name="OrderItem" Relationship="Self.FK__OrderItem__Servi__6477ECF3" FromRole="Service" ToRole="OrderItem" />
+  </EntityType>
+  <EntityType Name="Speciality">
+    <Key>
+      <PropertyRef Name="IdSpeciality" />
+    </Key>
+    <Property Name="IdSpeciality" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SpecialityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Doctor" Relationship="Self.FK__Doctor__Speciali__5165187F" FromRole="Speciality" ToRole="Doctor" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Type">
+    <Key>
+      <PropertyRef Name="IdType" />
+    </Key>
+    <Property Name="IdType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Pets" Relationship="Self.FK__Pets__Type__440B1D61" FromRole="Type" ToRole="Pets" />
+  </EntityType>
+  <EntityType Name="UnitOfMeasurement">
+    <Key>
+      <PropertyRef Name="IdUnit" />
+    </Key>
+    <Property Name="IdUnit" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="MeasName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MedicalSupplies" Relationship="Self.FK__MedicalSu__UnitM__5AEE82B9" FromRole="UnitOfMeasurement" ToRole="MedicalSupplies" />
+  </EntityType>
+  <EntityType Name="PassEmpl">
+    <Key>
+      <PropertyRef Name="NumPass" />
+      <PropertyRef Name="SerPass" />
+      <PropertyRef Name="Employee" />
+    </Key>
+    <Property Name="NumPass" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="SerPass" Type="String" MaxLength="6" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Employee" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employee1" Relationship="Self.FK__PassEmpl__Employ__5629CD9C" FromRole="PassEmpl" ToRole="Employee" />
+    <NavigationProperty Name="Passport" Relationship="Self.FK__PassEmpl__NumPas__5535A963" FromRole="PassEmpl" ToRole="Passport" />
+  </EntityType>
+  <Association Name="FK__Employee__Cabine__4D94879B">
+    <End Role="Cabinet" Type="Self.Cabinet" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cabinet">
+        <PropertyRef Name="IdCabinet" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="Cabinet" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Client__Gender__48CFD27E">
+    <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+    <End Role="Client" Type="Self.Client" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="IdGender" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="Gender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MedCard__IdClien__5DCAEF64">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="MedCard" Type="Self.MedCard" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="IdClient" />
+      </Principal>
+      <Dependent Role="MedCard">
+        <PropertyRef Name="IdClient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Doctor__Employee__5070F446">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Doctor" Type="Self.Doctor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="IdEmployee" />
+      </Principal>
+      <Dependent Role="Doctor">
+        <PropertyRef Name="Employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Doctor__Speciali__5165187F">
+    <End Role="Speciality" Type="Self.Speciality" Multiplicity="1" />
+    <End Role="Doctor" Type="Self.Doctor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Speciality">
+        <PropertyRef Name="IdSpeciality" />
+      </Principal>
+      <Dependent Role="Doctor">
+        <PropertyRef Name="Speciality" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order__IdDoctor__60A75C0F">
+    <End Role="Doctor" Type="Self.Doctor" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="IdDoctor" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="IdDoctor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employee__Gender__4BAC3F29">
+    <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="IdGender" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="Gender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employee__Role__4CA06362">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="IdRole" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="Role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PassEmpl__Employ__5629CD9C">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="PassEmpl" Type="Self.PassEmpl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="IdEmployee" />
+      </Principal>
+      <Dependent Role="PassEmpl">
+        <PropertyRef Name="Employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pets__Gender__44FF419A">
+    <End Role="GenderPets" Type="Self.GenderPets" Multiplicity="1" />
+    <End Role="Pets" Type="Self.Pets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GenderPets">
+        <PropertyRef Name="IdGender" />
+      </Principal>
+      <Dependent Role="Pets">
+        <PropertyRef Name="Gender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MedicalSu__UnitM__5AEE82B9">
+    <End Role="UnitOfMeasurement" Type="Self.UnitOfMeasurement" Multiplicity="1" />
+    <End Role="MedicalSupplies" Type="Self.MedicalSupplies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UnitOfMeasurement">
+        <PropertyRef Name="IdUnit" />
+      </Principal>
+      <Dependent Role="MedicalSupplies">
+        <PropertyRef Name="UnitMeas" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderItem__Medic__656C112C">
+    <End Role="MedicalSupplies" Type="Self.MedicalSupplies" Multiplicity="0..1" />
+    <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MedicalSupplies">
+        <PropertyRef Name="IdMedSupplies" />
+      </Principal>
+      <Dependent Role="OrderItem">
+        <PropertyRef Name="MedicalSupplies" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderItem__IdOrd__6383C8BA">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="IdOrder" />
+      </Principal>
+      <Dependent Role="OrderItem">
+        <PropertyRef Name="IdOrder" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderItem__Servi__6477ECF3">
+    <End Role="Service" Type="Self.Service" Multiplicity="1" />
+    <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="IdService" />
+      </Principal>
+      <Dependent Role="OrderItem">
+        <PropertyRef Name="Service" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PassEmpl__NumPas__5535A963">
+    <End Role="Passport" Type="Self.Passport" Multiplicity="1" />
+    <End Role="PassEmpl" Type="Self.PassEmpl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Passport">
+        <PropertyRef Name="NumPass" />
+      </Principal>
+      <Dependent Role="PassEmpl">
+        <PropertyRef Name="NumPass" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pets__Type__440B1D61">
+    <End Role="Type" Type="Self.Type" Multiplicity="1" />
+    <End Role="Pets" Type="Self.Pets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Type">
+        <PropertyRef Name="IdType" />
+      </Principal>
+      <Dependent Role="Pets">
+        <PropertyRef Name="Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cabinet" EntityType="Self.Cabinet" />
+    <EntitySet Name="Client" EntityType="Self.Client" />
+    <EntitySet Name="Doctor" EntityType="Self.Doctor" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" />
+    <EntitySet Name="Gender" EntityType="Self.Gender" />
+    <EntitySet Name="GenderPets" EntityType="Self.GenderPets" />
+    <EntitySet Name="MedCard" EntityType="Self.MedCard" />
+    <EntitySet Name="MedicalSupplies" EntityType="Self.MedicalSupplies" />
+    <EntitySet Name="Order" EntityType="Self.Order" />
+    <EntitySet Name="OrderItem" EntityType="Self.OrderItem" />
+    <EntitySet Name="Passport" EntityType="Self.Passport" />
+    <EntitySet Name="Pets" EntityType="Self.Pets" />
+    <EntitySet Name="Role" EntityType="Self.Role" />
+    <EntitySet Name="Service" EntityType="Self.Service" />
+    <EntitySet Name="Speciality" EntityType="Self.Speciality" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Type" EntityType="Self.Type" />
+    <EntitySet Name="UnitOfMeasurement" EntityType="Self.UnitOfMeasurement" />
+    <EntitySet Name="PassEmpl" EntityType="Self.PassEmpl" />
+    <AssociationSet Name="FK__Employee__Cabine__4D94879B" Association="Self.FK__Employee__Cabine__4D94879B">
+      <End Role="Cabinet" EntitySet="Cabinet" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Client__Gender__48CFD27E" Association="Self.FK__Client__Gender__48CFD27E">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="Client" EntitySet="Client" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MedCard__IdClien__5DCAEF64" Association="Self.FK__MedCard__IdClien__5DCAEF64">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="MedCard" EntitySet="MedCard" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Doctor__Employee__5070F446" Association="Self.FK__Doctor__Employee__5070F446">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Doctor" EntitySet="Doctor" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Doctor__Speciali__5165187F" Association="Self.FK__Doctor__Speciali__5165187F">
+      <End Role="Speciality" EntitySet="Speciality" />
+      <End Role="Doctor" EntitySet="Doctor" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order__IdDoctor__60A75C0F" Association="Self.FK__Order__IdDoctor__60A75C0F">
+      <End Role="Doctor" EntitySet="Doctor" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employee__Gender__4BAC3F29" Association="Self.FK__Employee__Gender__4BAC3F29">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employee__Role__4CA06362" Association="Self.FK__Employee__Role__4CA06362">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PassEmpl__Employ__5629CD9C" Association="Self.FK__PassEmpl__Employ__5629CD9C">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="PassEmpl" EntitySet="PassEmpl" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pets__Gender__44FF419A" Association="Self.FK__Pets__Gender__44FF419A">
+      <End Role="GenderPets" EntitySet="GenderPets" />
+      <End Role="Pets" EntitySet="Pets" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MedicalSu__UnitM__5AEE82B9" Association="Self.FK__MedicalSu__UnitM__5AEE82B9">
+      <End Role="UnitOfMeasurement" EntitySet="UnitOfMeasurement" />
+      <End Role="MedicalSupplies" EntitySet="MedicalSupplies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderItem__Medic__656C112C" Association="Self.FK__OrderItem__Medic__656C112C">
+      <End Role="MedicalSupplies" EntitySet="MedicalSupplies" />
+      <End Role="OrderItem" EntitySet="OrderItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderItem__IdOrd__6383C8BA" Association="Self.FK__OrderItem__IdOrd__6383C8BA">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="OrderItem" EntitySet="OrderItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderItem__Servi__6477ECF3" Association="Self.FK__OrderItem__Servi__6477ECF3">
+      <End Role="Service" EntitySet="Service" />
+      <End Role="OrderItem" EntitySet="OrderItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PassEmpl__NumPas__5535A963" Association="Self.FK__PassEmpl__NumPas__5535A963">
+      <End Role="Passport" EntitySet="Passport" />
+      <End Role="PassEmpl" EntitySet="PassEmpl" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pets__Type__440B1D61" Association="Self.FK__Pets__Type__440B1D61">
+      <End Role="Type" EntitySet="Type" />
+      <End Role="Pets" EntitySet="Pets" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

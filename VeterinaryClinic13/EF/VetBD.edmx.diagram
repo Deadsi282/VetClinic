@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7dc04abaa1a14c86bf866bdac018f3da" Name="Diagram1">
+        <EntityTypeShape EntityType="VeterinaryClinicModel.Cabinet" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinaryClinicModel.Client" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinaryClinicModel.Doctor" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinaryClinicModel.Employee" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinaryClinicModel.Gender" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinaryClinicModel.GenderPets" Width="1.5" PointX="9.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinaryClinicModel.MedCard" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinaryClinicModel.MedicalSupplies" Width="1.5" PointX="7.5" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinaryClinicModel.Order" Width="1.5" PointX="7.5" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinaryClinicModel.OrderItem" Width="1.5" PointX="9.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinaryClinicModel.Passport" Width="1.5" PointX="3" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinaryClinicModel.Pets" Width="1.5" PointX="12" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinaryClinicModel.Role" Width="1.5" PointX="0.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinaryClinicModel.Service" Width="1.5" PointX="7.5" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinaryClinicModel.Speciality" Width="1.5" PointX="3" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinaryClinicModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinaryClinicModel.Type" Width="1.5" PointX="9.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinaryClinicModel.UnitOfMeasurement" Width="1.5" PointX="5.25" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinaryClinicModel.PassEmpl" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="VeterinaryClinicModel.FK__Employee__Cabine__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinaryClinicModel.FK__Client__Gender__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinaryClinicModel.FK__MedCard__IdClien__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinaryClinicModel.FK__Doctor__Employee__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinaryClinicModel.FK__Doctor__Speciali__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinaryClinicModel.FK__Order__IdDoctor__60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinaryClinicModel.FK__Employee__Gender__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinaryClinicModel.FK__Employee__Role__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinaryClinicModel.FK__PassEmpl__Employ__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinaryClinicModel.FK__Pets__Gender__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinaryClinicModel.FK__MedicalSu__UnitM__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinaryClinicModel.FK__OrderItem__Medic__656C112C" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinaryClinicModel.FK__OrderItem__IdOrd__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinaryClinicModel.FK__OrderItem__Servi__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinaryClinicModel.FK__PassEmpl__NumPas__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinaryClinicModel.FK__Pets__Type__440B1D61" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
